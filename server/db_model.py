@@ -1,14 +1,27 @@
 """
-    Connect to a vertica database
+    Connect to a vertica database and run queries
 """
 from flask import g
-import hp_vertica_client
+import vertica_python
+
 import re
 
 DB_NAME = 'test'
 DB_USER = 'dbadmin'
 DB_PASSWORD = ''
 DB_HOST = 'ec2-54-236-111-135.compute-1.amazonaws.com'
+
+conn_info = {'host': 'ec2-54-236-111-135.compute-1.amazonaws.com',
+             'port': 5433,
+             'user': 'dbadmin',
+             'password': '',
+             'database': 'test',
+             # 10 minutes timeout on queries
+             'read_timeout': 600,
+             # default throw error on invalid UTF-8 results
+             'unicode_error': 'strict',
+             # SSL is disabled by default
+             'ssl': False}
 
 def make_dicts(cursor, row):
     """
@@ -25,7 +38,7 @@ def make_dicts(cursor, row):
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = g._database = hp_vertica_client.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST)
+        db = g._database = vertica_python.connect(**conn_info)
     return db
 
 
@@ -51,7 +64,7 @@ def select_one():
     """
         Select 1 from database
     """
-    sql = "select 1"
+    sql = "SELECT * FROM stella LIMIT 2"
     results = query_db(sql)
     print results
     return results
