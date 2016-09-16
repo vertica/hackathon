@@ -4,7 +4,7 @@ A getting started kit for Hackathons using Vertica!
 ## Install the vertica python client
 First you need to install the vertica python client, so that you can connect to the database through your python code.
 
-If you're using pip >= 1.4 and you don't already have pytz installed:
+If you are using pip >= 1.4 and you don't already have pytz installed:
     pip install --pre pytz
     
 To install vertica-python with pip:
