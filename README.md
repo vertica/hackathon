@@ -1,7 +1,13 @@
 # Hackathon
 This is a getting started kit for Hackathons using Vertica!
 
-## Install the vertica python client
+First clone the repo with:
+
+    git clone git@github.com:vertica/hackathon.git vertica-hackathon
+    
+    cd vertica-hackathon
+
+## Install the vertica python client and other dependencies
 First you need to install the vertica python client, so that you can connect to the database by simply writing python code.
 
 There are a few requirements for that. First, you need to install pip. If you are using Python 2 >=2.7.9 or Python 3 >=3.4 downloaded from python.org you will already have pip. Otherwise follow installation instructions here: https://pip.pypa.io/en/stable/installing/
@@ -21,7 +27,7 @@ More instructions and source code of the python client at: https://github.com/ub
 
 Flask is a powerfull and lightweight python framework. It does all the dirty work of setting up a server. You can install it with:
 
-    pip install flask
+    sudo pip install flask
 
 Run your demo server that submits a select 1 query:
 
