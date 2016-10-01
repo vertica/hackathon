@@ -5,13 +5,14 @@ from flask import g
 import vertica_python
 
 import re
+import os
 
 DB_NAME = 'test'
 DB_USER = 'dbadmin'
 DB_PASSWORD = ''
-DB_HOST = 'ec2-52-90-69-159.compute-1.amazonaws.com'
+DB_HOST = os.environ['HOME']
 
-conn_info = {'host': 'ec2-52-90-69-159.compute-1.amazonaws.com',
+conn_info = {'host': DB_HOST,
              'port': 5433,
              'user': 'dbadmin',
              'password': '',
