@@ -65,7 +65,7 @@ def select_one():
     """
         Select 1 from database
     """
-    sql = "SELECT * FROM stella LIMIT 2"
+    sql = "SELECT 1"
     results = query_db(sql)
     print results
     return results
