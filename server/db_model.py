@@ -10,7 +10,7 @@ import os
 DB_NAME = 'test'
 DB_USER = 'dbadmin'
 DB_PASSWORD = ''
-DB_HOST = os.environ['HOME']
+DB_HOST = os.environ['DB_HOST']
 
 conn_info = {'host': DB_HOST,
              'port': 5433,
