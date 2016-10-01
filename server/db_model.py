@@ -9,9 +9,9 @@ import re
 DB_NAME = 'test'
 DB_USER = 'dbadmin'
 DB_PASSWORD = ''
-DB_HOST = 'ec2-54-236-111-135.compute-1.amazonaws.com'
+DB_HOST = 'ec2-52-90-69-159.compute-1.amazonaws.com'
 
-conn_info = {'host': 'ec2-54-236-111-135.compute-1.amazonaws.com',
+conn_info = {'host': 'ec2-52-90-69-159.compute-1.amazonaws.com',
              'port': 5433,
              'user': 'dbadmin',
              'password': '',
