@@ -5,13 +5,16 @@ def get_db():
     import re
     import os
 
-    DB_NAME = os.environ['DB_NAME']
-    if not DB_NAME:
+    try:
+        DB_NAME = os.environ['DB_NAME']
+    except Exception, e:
         DB_NAME = 'test'
+
     try:
         DB_USER = os.environ['DB_USER']
     except Exception, e:
         DB_USER = 'dbadmin'
+
     DB_PASSWORD = ''
     DB_HOST = os.environ['DB_HOST']
 

@@ -7,16 +7,24 @@ import vertica_python
 import re
 import os
 
-DB_NAME = os.environ['DB_NAME']
-DB_USER = 'dbadmin'
+try:
+    DB_NAME = os.environ['DB_NAME']
+except Exception, e:
+    DB_NAME = 'test'
+
+try:
+    DB_USER = os.environ['DB_USER']
+except Exception, e:
+    DB_USER = 'dbadmin'
+
 DB_PASSWORD = ''
 DB_HOST = os.environ['DB_HOST']
 
 conn_info = {'host': DB_HOST,
              'port': 5433,
-             'user': DB_NAME,
+             'user': DB_USER,
              'password': '',
-             'database': 'test',
+             'database': DB_NAME,
              # 10 minutes timeout on queries
              'read_timeout': 600,
              # default throw error on invalid UTF-8 results
