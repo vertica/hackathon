@@ -7,14 +7,14 @@ import vertica_python
 import re
 import os
 
-DB_NAME = 'test'
+DB_NAME = os.environ['DB_NAME']
 DB_USER = 'dbadmin'
 DB_PASSWORD = ''
 DB_HOST = os.environ['DB_HOST']
 
 conn_info = {'host': DB_HOST,
              'port': 5433,
-             'user': 'dbadmin',
+             'user': DB_NAME,
              'password': '',
              'database': 'test',
              # 10 minutes timeout on queries
