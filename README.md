@@ -25,7 +25,7 @@ More instructions and source code of the python client at: https://github.com/ub
 
 ## Install Flask, a python framework and submit your first query
 
-Flask is a powerfull and lightweight python framework. It does all the dirty work of setting up a server. You can install it with:
+Flask (http://flask.pocoo.org) is a powerful and lightweight python framework. It does all the dirty work of setting up a server. You can install it with:
 
     sudo pip install flask
 
