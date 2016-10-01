@@ -1,4 +1,17 @@
 
+def make_dicts(cursor, row):
+    """
+        Turn query results into dictionaries keyed by column name
+    """
+    colnames = [col[0] for col in cursor.description]
+
+    fmtrow = {}
+    for idx, value in enumerate(row):
+      fmtrow[colnames[idx]] = value
+
+    return fmtrow
+
+
 def get_db():
     import vertica_python
 
@@ -43,10 +56,10 @@ def query_db(query, args=(), one=False):
 
         # Turn into colname->val dict representation of tuple
         # this isn't very efficient but will suffice for now
-#        rv = [make_dicts(cur, row) for row in rv]
+        rv = [make_dicts(cur, row) for row in rv]
     except Exception, e:
         print e
-#        rv = [{'error': e}]
+        rv = [{'error': e}]
 
     cur.close()
     return (rv[0] if rv else None) if one else rv
