@@ -31,6 +31,7 @@ Flask is a powerfull and lightweight python framework. It does all the dirty wor
 
 Run your demo server that submits a select 1 query:
 
+    cd server
     python server.py
     
 Visit localhost:5000 to see the Hello World page.
