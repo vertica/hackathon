@@ -1,4 +1,7 @@
-
+import vertica_python
+import re
+import os
+import config as conf
 from texttable import Texttable
 
 def pretty_print_results(cur, rv):
@@ -20,29 +23,15 @@ def make_dicts(cursor, row):
     return fmtrow
 
 def connect_to_db():
-    import vertica_python
-
-    import re
-    import os
-
-    try:
-        DB_NAME = os.environ['DB_NAME']
-    except Exception, e:
-        DB_NAME = 'test'
-
-    try:
-        DB_USER = os.environ['DB_USER']
-    except Exception, e:
-        DB_USER = 'dbadmin'
-
-    DB_PASSWORD = ''
-    DB_HOST = os.environ['DB_HOST']
-
-    conn_info = {'host': DB_HOST,
+    """
+        Connect to vertica instance. 
+        Use Environment variables as much as possible.
+    """
+    conn_info = {'host': conf.DB_HOST,
                  'port': 5433,
-                 'user': DB_USER,
-                 'password': '',
-                 'database': DB_NAME,
+                 'user': conf.DB_USER,
+                 'password': conf.DB_PASSWORD,
+                 'database': conf.DB_NAME,
                  # 10 minutes timeout on queries
                  'read_timeout': 600,
                  # default throw error on invalid UTF-8 results
@@ -57,6 +46,7 @@ def query_db(query, args=(), one=False, db = None, pretty_print=False):
     print "Query string: " + query
     if not db:
         db = connect_to_db()
+        #db.cursor().execute('set search_path to public, "$user", public;')
     cur = db.cursor()
 
     try:
@@ -75,5 +65,4 @@ def query_db(query, args=(), one=False, db = None, pretty_print=False):
 
     cur.close()
     return (rv[0] if rv else None) if one else rv
-
 

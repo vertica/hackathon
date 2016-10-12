@@ -8,6 +8,8 @@ def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = connect_to_db()
+        # Set Search Path to default schema
+        #db.cursor().execute('set search_path to public, "$user", public;')
     return db
 
 def select_one():
