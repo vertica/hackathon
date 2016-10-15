@@ -70,7 +70,7 @@ def query_db(query, args=(), one=False, db = None, pretty_print=False):
         # Turn into colname->val dict representation of tuple
         # this isn't very efficient but will suffice for now
         rv = [make_dicts(cur, row) for row in rv]
-    except Exception, e:
+    except:
         print e
         rv = [{'error': e}]
 
@@ -90,7 +90,7 @@ def load_db(query, db = None):
     try:
         cur.copy(query, "")
         rv = [{'success': 1}]
-    except Exception, e:
+    except:
         rv = [{'error': e}]
 
     cur.close()
