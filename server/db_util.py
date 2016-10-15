@@ -2,6 +2,7 @@ import vertica_python
 import re
 import os
 from config import *
+from __future__ import print_function
 from texttable import Texttable
 
 def pretty_print_results(cur, rv):
@@ -15,7 +16,7 @@ def pretty_print_results(cur, rv):
     rows = [[]] + rv
     t.add_rows(rows)
     t.header(colnames)
-    print t.draw()
+    print(t.draw())
 
 def make_dicts(cursor, row):
     """
@@ -55,7 +56,7 @@ def query_db(query, args=(), one=False, db = None, pretty_print=False):
     """
         Set load to try if the query command wants to load data in vertica
     """
-    print "Query string: " + query
+    print("Query string: " + query)
     if not db:
         db = connect_to_db()
     cur = db.cursor()
@@ -70,8 +71,8 @@ def query_db(query, args=(), one=False, db = None, pretty_print=False):
         # Turn into colname->val dict representation of tuple
         # this isn't very efficient but will suffice for now
         rv = [make_dicts(cur, row) for row in rv]
-    except:
-        print e
+    except e:
+        print(e)
         rv = [{'error': e}]
 
     cur.close()
@@ -82,7 +83,7 @@ def load_db(query, db = None):
         Load data in db
         Example: copy foo from '/home/spantela/vertica-hackathon/server/data.csv' delimiter ',' direct REJECTED DATA AS TABLE foo_rejected;`
     """
-    print "Query string: " + query
+    print("Query string: " + query)
     if not db:
         db = connect_to_db()
     cur = db.cursor()
