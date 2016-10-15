@@ -1,8 +1,8 @@
+from __future__ import print_function
 import vertica_python
 import re
 import os
 from config import *
-from __future__ import print_function
 from texttable import Texttable
 
 def pretty_print_results(cur, rv):
