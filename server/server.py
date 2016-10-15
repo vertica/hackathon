@@ -1,3 +1,8 @@
+import os
+import sys
+sys.path.append(os.getcwd() + "/deps")
+
+
 from flask import Flask
 from flask import render_template
 
