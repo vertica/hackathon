@@ -12,7 +12,10 @@ if __name__ == "__main__":
                 line += raw_input("(cont)> ")
             if line.split(' ')[0] == "insert":
                 line += "; commit;"
-
-            query_db(line, pretty_print=True)
+            if line.split(' ')[0] == "copy":
+                # Use cur.copy instead of cur.execute for loading files
+                load_db(line)
+            else: 
+                query_db(line, pretty_print=True)
         line = raw_input("> ")
 
