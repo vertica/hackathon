@@ -1,4 +1,5 @@
 from db_util import *
+import readline
 
 if __name__ == "__main__":
     import sys
@@ -15,7 +16,7 @@ if __name__ == "__main__":
             if line.split(' ')[0] == "copy":
                 # Use cur.copy instead of cur.execute for loading files
                 load_db(line)
-            else: 
+            else:
                 query_db(line, pretty_print=True)
         line = raw_input("> ")
 
